@@ -1,0 +1,21 @@
+.swiper{
+  &-pagination{
+    font-size: 1.2rem;
+  }
+}
+
+.event{
+  &-list{
+    .swiper{
+      &-wrapper{
+        transform: none!important;
+        display: flex;
+        flex-direction: column;
+      }
+      &-slide{
+        width:100%!important;
+        height:auto!important;
+      }
+    }
+  }
+}
