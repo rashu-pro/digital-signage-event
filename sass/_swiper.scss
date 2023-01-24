@@ -1,6 +1,10 @@
 .swiper{
   &-pagination{
     font-size: 1.2rem;
+    &-fraction{
+      width:auto!important;
+      padding-left:1.5rem;
+    }
   }
 }
 

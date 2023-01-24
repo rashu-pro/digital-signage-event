@@ -1,5 +1,5 @@
 import Image from "next/image";
-import IconCredit from "../public/icon-credit-ms.png";
+import IconCredit from "../../public/icon-credit-ms.png";
 export default function Footer(){
   return (
     <div className="ds-event-bottom-foot">

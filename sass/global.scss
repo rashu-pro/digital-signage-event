@@ -389,24 +389,35 @@ html,body{
   }
 
   @media (min-width: 3200px){
-    font-size: 28px;
+    font-size: 30px;
   }
 
   @media (min-width: 3800px){
-    font-size: 33px;
+    font-size: 36px;
   }
 }
 p{
-  font-size: 1.8rem;
+  //font-size: 1.8rem;
 }
-h2,h3,h4{
-
-}
-h3{
-  font-size: 1.7rem;
+h2,h3,h4,h5,h6{
+  margin:0;
+  padding-bottom: .8rem;
 }
 
 h2{
-  font-size: 2rem;
+  font-size: 2.4rem;
   font-weight: 800;
+}
+
+h2{
+  font-size: 2.2rem;
+  font-weight: 800;
+}
+
+h3{
+  font-size: 2rem;
+}
+
+h4{
+  font-size: 1.8rem;
 }

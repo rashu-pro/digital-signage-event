@@ -41,6 +41,15 @@
   padding-left:2rem;
   padding-right:2rem;
 }
+.pl-5{
+  padding-left:3.5rem;
+}
+.pr-5{
+  padding-right:2rem;
+  @meida (min-width:768px){
+    padding-right:3.5rem;
+  }
+}
 .mx-auto{
   margin-left:auto;
   margin-right:auto;
@@ -93,6 +102,10 @@ bg color
     background-color: $bg-grey;
     &-greenish{
       background-color: $bg-grey-greenish;
+    }
+
+    &-2{
+      background-color: #f7f7f7;
     }
   }
 
@@ -183,7 +196,14 @@ text property
   &-underline{
     text-decoration: underline;
   }
+  &-yellow {
+    color: #F8E000;
+  }
+  &-danger{
+    color: #f44336;
+  }
 }
+
 .text-big{
   font-size: $font-big;
 }
