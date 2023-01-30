@@ -23,7 +23,7 @@ export default function EventDetails() {
     "announcements": [
       {
         "title": "A Life of Giving Thanks",
-        "image": "http://api-test.test/images/jummah-namaz.jpg",
+        "image": "https://test.skifftech.com/digital-signage-announcement.build/_next/static/media/jummah-namaz.jpg",
         "date": "16/01/2023",
         "description": "<div class=\"ds-event-body\"><p class=\"m-0 mb-1\">Assalam-O-Alaikum Community Members,</p><p>Please note next week on Friday November 25, 2022</p><p class=\"text-underline\">Jummah Khutbah topic is:</p><p class=\"text-highlight text-center text-uppercase\"><span class=\"text-bold\">A LIFE OF GIVING THANKS</span><br> <span class=\"text-small text-normalcase\">By IMAM SAFI KHAN</span></p><p class=\"pt-2\">There is no shortage of blessings to be thankful for. What is the importance of thankfulness? How should we express it and what effects should it have on us? We reflect on blessings and the true manifestation of thankfulness and gratitude. Saying Alhamdolilah.</p></div>"
       },
@@ -54,7 +54,7 @@ export default function EventDetails() {
           slidesPerView={1}
           loop={false}
           autoplay={{
-            delay: 10000,
+            delay: 18000,
             disableOnInteraction: false,
           }}
           effect="creative"

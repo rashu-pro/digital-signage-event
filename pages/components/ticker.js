@@ -10,7 +10,7 @@ export default function MarqueeText(){
   return (
     <>
       {data.events.map((data, index)=>(
-        <div key={index} className="me-2">
+        <div key={index} className="me-2 marquee-single">
           <p className="m-0">{data.description} </p>
         </div>
       ))}
