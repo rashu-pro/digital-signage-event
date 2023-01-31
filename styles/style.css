@@ -391,12 +391,9 @@ text property
 }
 .ds-event-top-head .logo-holder img {
   position: relative !important;
-  max-width: 5.5rem;
-  max-height: 5.5rem;
+  max-width: 5.3rem;
+  max-height: 5.3rem;
   object-fit: contain;
-  background: #fff;
-  padding: 0.2rem;
-  border-radius: 0.2rem;
 }
 .ds-event-top-head-title {
   position: absolute;
@@ -690,7 +687,7 @@ text property
   font-size: 1.2rem;
 }
 .event-list-item.current {
-  border-left: 3px solid;
+  border-left: 0.2rem solid;
   border-left-color: #1FAA60;
   background-color: rgba(31, 170, 96, 0.1);
   padding-bottom: 1rem;
@@ -736,7 +733,7 @@ text property
 
 .marquee-single {
   padding-left: 1.4rem;
-  margin-left: 1.5rem;
+  margin-left: 5rem;
   position: relative;
 }
 .marquee-single:before {

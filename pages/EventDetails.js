@@ -11,6 +11,7 @@ import Image from "next/image";
 
 // const fetcher = (...args) => fetch(...args).then((res) => res.json())
 // const refreshInterval = 5*60*1000
+let bgColor = '#218649';
 
 export default function EventDetails() {
   // const { data, error } = useSWR('http://api-test.test/api/test-api', fetcher, { refreshInterval: refreshInterval })
@@ -22,8 +23,14 @@ export default function EventDetails() {
     "status": 1,
     "announcements": [
       {
-        "title": "A Life of Giving Thanks",
+        "title": "ICS THANKSGIVING PICNIC",
         "image": "https://test.skifftech.com/digital-signage-announcement.build/_next/static/media/jummah-namaz.jpg",
+        "date": "16/01/2023",
+        "description": "<div class=\"ds-event-body\"><p class=\"m-0 mb-1\">Assalam-O-Alaikum Community Members,</p><p>Please note next week on Friday November 25, 2022</p><p class=\"text-underline\">Jummah Khutbah topic is:</p><p class=\"text-uppercase\"><span class=\"text-bold\">A LIFE OF GIVING THANKS</span><br> <span class=\"text-small text-normalcase\">By IMAM SAFI KHAN</span></p><p class=\"pt-2\">There is no shortage of blessings to be thankful for. What is the importance of thankfulness? How should we express it and what effects should it have on us? We reflect on blessings and the true manifestation of thankfulness and gratitude. Saying Alhamdolilah.</p></div>"
+      },
+      {
+        "title": "A Life of Giving Thanks",
+        "image": "https://test.skifftech.com/media/happy-thanks-giving.gif",
         "date": "16/01/2023",
         "description": "<div class=\"ds-event-body\"><p class=\"m-0 mb-1\">Assalam-O-Alaikum Community Members,</p><p>Please note next week on Friday November 25, 2022</p><p class=\"text-underline\">Jummah Khutbah topic is:</p><p class=\"text-highlight text-center text-uppercase\"><span class=\"text-bold\">A LIFE OF GIVING THANKS</span><br> <span class=\"text-small text-normalcase\">By IMAM SAFI KHAN</span></p><p class=\"pt-2\">There is no shortage of blessings to be thankful for. What is the importance of thankfulness? How should we express it and what effects should it have on us? We reflect on blessings and the true manifestation of thankfulness and gratitude. Saying Alhamdolilah.</p></div>"
       },
@@ -54,7 +61,7 @@ export default function EventDetails() {
           slidesPerView={1}
           loop={false}
           autoplay={{
-            delay: 18000,
+            delay: 32000,
             disableOnInteraction: false,
           }}
           effect="creative"
@@ -75,6 +82,14 @@ export default function EventDetails() {
         >
           {data.announcements.map((data, index) => (
             <SwiperSlide key={index}>
+              <style jsx>{`
+                .bg-primary{
+                  background-color: ${bgColor}
+                }
+                .text-primary{
+                  color: ${bgColor}
+                }
+            `}</style>
               <div className="ds-event-single mx-auto">
                 {data.image !== '' ? (
                   <div className="row event-row event-row-js">
