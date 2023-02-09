@@ -573,6 +573,9 @@ text property
   flex-direction: column;
   justify-content: center;
 }
+.ds-event-single {
+  background: #fff;
+}
 .ds-event-single .event-row {
   height: 100vh;
   min-height: 56rem;

@@ -390,7 +390,7 @@ html *, body * {
 }
 @media (min-width: 3800px) {
   html, body {
-    font-size: 36px;
+    font-size: 34px;
   }
 }
 
