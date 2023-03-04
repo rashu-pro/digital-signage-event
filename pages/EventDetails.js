@@ -1,5 +1,4 @@
 import useSWR from 'swr'
-import {useRouter} from "next/router";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import { Pagination, Navigation, EffectCreative, FreeMode, Thumbs, Grid } from "swiper";
@@ -7,16 +6,15 @@ import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
 import "swiper/css/effect-creative";
-// import Script from "next/script";
 import Image from "next/image";
 import getSlug from "./components/slug";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
-const refreshInterval = 5*60*1000
+const refreshInterval = 15*60*1000
 let bgColor = '#218649';
 
 export default function EventDetails() {
-  const { data, error } = useSWR('https://secure-api.net/api/v1/company-announcement?slug='+getSlug(), fetcher, { refreshInterval: refreshInterval })
+  const { data, error } = useSWR('https://secure-api.net/api/v1/digital-signage-announcement?slug='+getSlug(), fetcher, { refreshInterval: refreshInterval })
   if(error) return <p className='text-center'> Failed to load... </p>
   if(!data) return <p className='text-center'>loading...</p>
   
@@ -50,7 +48,7 @@ export default function EventDetails() {
           className="mainSlider"
         >
           {data.announcments.map((data, index) => (
-            <>
+            <div key={index}>
               {data.details!==null?(
                 <SwiperSlide key={index}>
                   <style jsx>{`
@@ -70,9 +68,7 @@ export default function EventDetails() {
                             <div className="w-100">
                               <div className="image-holder">
                                 <div className="image image-details">
-                                  {/*<Image src={data.image} alt="event" fill />*/}
                                   {data.image===null?(
-                                    // <Image src={data.image} alt="event" fill />
                                     <p></p>
                                   ):(
                                     <Image src={data.image} alt="event" fill />
@@ -120,7 +116,7 @@ export default function EventDetails() {
               ):(
                 <></>
               )}
-            </>
+            </div>
           ))}
 
         </Swiper>

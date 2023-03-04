@@ -25,14 +25,10 @@ export default function Header(props){
       `}</style>
         <div className="ds-organization-logo pr-5">
           <div className="logo-holder">
-            <Image src="https://res.cloudinary.com/secure-api/image/upload/v1675159812/secure-api/ics/images/obw2vgner7zjapdvdo6e.png" alt="ICS" fill />
+            <Image src={props.logo} alt="ICS" fill />
           </div>
         </div>
-        <Marquee className="py-4 text-yellow marquee-text ds-event-top-head-title pr-5"
-                 gradient={false}
-                 pauseOnClick={true} speed={200}>
-          <MarqueeText />
-        </Marquee>
+        <MarqueeText />
       </div>
     </>
   )

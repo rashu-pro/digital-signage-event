@@ -1,6 +1,13 @@
 import Script from "next/script";
+import useSWR from "swr";
+import getSlug from "./slug";
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 export default function Sidebar(props){
+  const { data, error } = useSWR('https://secure-api.net/api/v1/digital-signage-weekly-events?slug='+getSlug(), fetcher)
+  if(error) return <p className='m-0 text-center'> Failed to load... </p>
+  if(!data) return <p className='m-0 text-center'>loading...</p>
   return (
     <>
       <Script id="script-sidebar" strategy="lazyOnload">
@@ -35,97 +42,41 @@ export default function Sidebar(props){
           </div>
 
           <div className="event-list">
-            <div className="event-list-item event-list-item-1 current">
-              <p className="m-0 event-list-item-date">Friday, November 15</p>
-              <p className="m-0 event-list-item-head">3rd Sunday</p>
-              <div className="event-list-item-body">
-                <p className="m-0">
-                  All Day
-                </p>
-              </div>
-            </div>
+            {data.map((data, index)=>(
+              <div key={index}>
+                {data.isActive?(
+                  <div className="event-list-item event-list-item-1 current">
+                    <p className="m-0 event-list-item-date">{data.date}</p>
+                    <p className="m-0 event-list-item-head">{data.title}</p>
+                    <div className="event-list-item-body">
+                      {data.startOn===''?(
+                        <></>
+                      ):(
+                        <p>{data.startOn}</p>
+                      )}
+                    </div>
+                  </div>
+                ):(
+                  <div className="event-list-item event-list-item-1">
+                    <p className="m-0 event-list-item-date">{data.date}</p>
+                    <p className="m-0 event-list-item-head">{data.title}</p>
+                    <div className="event-list-item-body">
+                      {data.startOn===''?(
+                        <></>
+                      ):(
+                        <p><strong>Start Time:</strong>{data.startOn}</p>
+                      )}
 
-            <div className="event-list-item event-list-item-2">
-              <p className="m-0 event-list-item-date">Monday, January 18</p>
-              <p className="m-0 event-list-item-head">Martin Luther King Day</p>
-              <div className="event-list-item-body">
-                <p className="m-0 d-table">
-                  <span className="table-cell left">07:00 AM </span>
-                  <span className="table-cell right">Breakfast</span>
-                </p>
+                      {data.endOn===''?(
+                        <></>
+                      ):(
+                        <p><strong>End Time:</strong>{data.endOn}</p>
+                      )}
+                    </div>
+                  </div>
+                )}</div>
+            ))}
 
-                <p className="m-0 d-table">
-                  <span className="table-cell left">12:00 PM </span>
-                  <span className="table-cell right">Lunch</span>
-                </p>
-              </div>
-            </div>
-
-            <div className="event-list-item event-list-item-3">
-              <p className="m-0 event-list-item-date">Wednesday, January 20</p>
-              <p className="m-0 event-list-item-head">California Tuesday</p>
-              <div className="event-list-item-body">
-                <p className="m-0 d-table">
-                  <span className="table-cell left">07:00 AM </span>
-                  <span className="table-cell right">Breakfast</span>
-                </p>
-
-                <p className="m-0 d-table">
-                  <span className="table-cell left">12:00 PM </span>
-                  <span className="table-cell right">Tech Work</span>
-                </p>
-              </div>
-            </div>
-
-            <div className="event-list-item event-list-item-4">
-              <p className="m-0 event-list-item-date">Thursday, January 01</p>
-              <p className="m-0 event-list-item-head">3rd Sunday</p>
-              <div className="event-list-item-body">
-                <p className="m-0">
-                  All Day
-                </p>
-              </div>
-            </div>
-
-            <div className="event-list-item event-list-item-5">
-              <p className="m-0 event-list-item-date">Friday, November 15</p>
-              <div className="event-list-item-body">
-                <p className="m-0 d-table">
-                  <span className="table-cell left">07:00 AM </span>
-                  <span className="table-cell right">Breakfast</span>
-                </p>
-
-                <p className="m-0 d-table">
-                  <span className="table-cell left">12:00 PM </span>
-                  <span className="table-cell right">Lunch</span>
-                </p>
-              </div>
-            </div>
-
-            <div className="event-list-item event-list-item-4">
-              <p className="m-0 event-list-item-date">Thursday, January 01</p>
-              <p className="m-0 event-list-item-head">3rd Sunday</p>
-              <div className="event-list-item-body">
-                <p className="m-0">
-                  All Day
-                </p>
-              </div>
-            </div>
-
-            <div className="event-list-item event-list-item-5">
-              <p className="m-0 event-list-item-date">Friday, November 15</p>
-              <div className="event-list-item-body">
-                <p className="m-0 d-table">
-                  <span className="table-cell left">07:00 AM </span>
-                  <span className="table-cell right">Breakfast</span>
-                </p>
-
-                <p className="m-0 d-table">
-                  <span className="table-cell left">12:00 PM </span>
-                  <span className="table-cell right">Lunch</span>
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
