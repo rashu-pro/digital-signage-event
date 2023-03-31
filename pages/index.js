@@ -24,9 +24,9 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Digital Signage Event</title>
+        <title>Announcement</title>
         <meta name="description" content="Digital Signage - Event" />
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="/favicon-digital-signage.png" />
       </Head>
 
       <main>
@@ -46,7 +46,7 @@ export default function Home() {
             </div>
 
             {/*page foot*/}
-            <Footer />
+            {/*<Footer />*/}
 
           </div>
         </div>

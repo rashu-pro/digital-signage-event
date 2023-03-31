@@ -26,9 +26,9 @@ export default function EventDetails() {
           modules={[Autoplay, Pagination, Navigation, EffectCreative]}
           spaceBetween={0}
           slidesPerView={1}
-          loop={false}
+          loop={true}
           autoplay={{
-            delay: 32000,
+            delay: 16000,
             disableOnInteraction: false,
           }}
           effect="creative"

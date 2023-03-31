@@ -29,6 +29,14 @@ export default function Header(props){
           </div>
         </div>
         <MarqueeText />
+        <div className="ds-organization-logo w-14">
+          <div className="logo-holder w-100">
+            <Image src="https://res.cloudinary.com/secure-api/image/upload/v1665995024/secure-api/Secure-api/content/images/bsyzbmzysh1fjgieix2v.png"
+                   alt="Powered by Masjidsolutions"
+                   class="bg-white"
+                   fill />
+          </div>
+        </div>
       </div>
     </>
   )

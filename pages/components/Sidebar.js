@@ -4,6 +4,105 @@ import getSlug from "./slug";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
+const sampleData = [
+  {
+    "date": "Wednesday, Mar 29",
+    "isActive": true,
+    "events": [
+      {
+        "title": "Call or Text us",
+        "startOn": "00:03 AM",
+        "endOn": "10:03 AM",
+        "description": "at  317-854-0207"
+      },
+      {
+        "title": "30% Off on All Products!",
+        "startOn": "00:03 AM",
+        "endOn": "00:04 AM",
+        "description": "23rd ISNA Education Forum Special"
+      },
+      {
+        "title": "Text to Give",
+        "startOn": "00:03 AM",
+        "endOn": "00:03 AM",
+        "description": "Text \"Donate\" to 833-292-9427"
+      }
+    ]
+  },
+  {
+    "date": "Thursday, Mar 30",
+    "isActive": false,
+    "events": [
+      {
+        "title": "No event available.",
+        "startOn": "",
+        "endOn": "",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "date": "Friday, Mar 31",
+    "isActive": false,
+    "events": [
+      {
+        "title": "Text to Give",
+        "startOn": "00:03 AM",
+        "endOn": "00:03 AM",
+        "description": "Text \"Donate\" to 833-292-9427"
+      }
+    ]
+  },
+  {
+    "date": "Saturday, Apr 01",
+    "isActive": false,
+    "events": [
+      {
+        "title": "No event available.",
+        "startOn": "",
+        "endOn": "",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "date": "Sunday, Apr 02",
+    "isActive": false,
+    "events": [
+      {
+        "title": "No event available.",
+        "startOn": "",
+        "endOn": "",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "date": "Monday, Apr 03",
+    "isActive": false,
+    "events": [
+      {
+        "title": "No event available.",
+        "startOn": "",
+        "endOn": "",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "date": "Tuesday, Apr 04",
+    "isActive": false,
+    "events": [
+      {
+        "title": "No event available.",
+        "startOn": "",
+        "endOn": "",
+        "description": ""
+      }
+    ]
+  }
+];
+
 export default function Sidebar(props){
   const { data, error } = useSWR('https://secure-api.net/api/v1/digital-signage-weekly-events?slug='+getSlug(), fetcher)
   if(error) return <p className='m-0 text-center'> Failed to load... </p>
@@ -13,7 +112,8 @@ export default function Sidebar(props){
       <Script id="script-sidebar" strategy="lazyOnload">
         {
           `
-            document.querySelector('.ds-event-wrapper-sidebar').style.paddingTop = headHeight+"px";
+          let headerHeight = document.querySelector('.ds-event-top-head').clientHeight;
+          document.querySelector('.ds-event-wrapper-sidebar').style.paddingTop = headerHeight+"px";
           `
         }
       </Script>
@@ -47,34 +147,32 @@ export default function Sidebar(props){
                 {data.isActive?(
                   <div className="event-list-item event-list-item-1 current">
                     <p className="m-0 event-list-item-date">{data.date}</p>
-                    <p className="m-0 event-list-item-head">{data.title}</p>
-                    <div className="event-list-item-body">
-                      {data.startOn===''?(
-                        <></>
-                      ):(
-                        <p>{data.startOn}</p>
-                      )}
-                    </div>
+                    {data.events.map((data, index)=>(
+                      <div key={index} className="mb-1">
+                        {data.startOn===''?(
+                          <p className="m-0 event-list-item-head opacity-md">{data.title}</p>
+                        ):(
+                          <p className="m-0 event-list-item-head">{data.title}</p>
+                        )}
+                      </div>
+                    ))}
                   </div>
                 ):(
                   <div className="event-list-item event-list-item-1">
                     <p className="m-0 event-list-item-date">{data.date}</p>
-                    <p className="m-0 event-list-item-head">{data.title}</p>
-                    <div className="event-list-item-body">
-                      {data.startOn===''?(
-                        <></>
-                      ):(
-                        <p><strong>Start Time:</strong>{data.startOn}</p>
-                      )}
-
-                      {data.endOn===''?(
-                        <></>
-                      ):(
-                        <p><strong>End Time:</strong>{data.endOn}</p>
-                      )}
-                    </div>
+                    {data.events.map((data, index)=>(
+                      <div key={index} className="mb-1">
+                        {data.startOn===''?(
+                          <p className="m-0 event-list-item-head opacity-md">{data.title}</p>
+                        ):(
+                          <p className="m-0 event-list-item-head">{data.title}</p>
+                        )}
+                      </div>
+                    ))}
                   </div>
-                )}</div>
+                )}
+
+              </div>
             ))}
 
           </div>
