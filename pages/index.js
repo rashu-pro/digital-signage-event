@@ -8,6 +8,7 @@ import EventDetails from "./EventDetails";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 // const refreshInterval = 5*60*1000
+let bgColor = '#218649';
 export default function Home() {
   const {data, error} = useSWR('https://secure-api.net/api/v1/company-prayer?slug=' + getSlug(), fetcher)
   if (error) return <p className='text-center'> Failed to load... </p>
@@ -30,6 +31,11 @@ export default function Home() {
       </Head>
 
       <main>
+        <style jsx>{`
+        .ds-event-wrapper.v2 .ds-event-inner{
+        background:${bgColor};
+        }
+        `}</style>
         <div className="ds-wrapper landscape-mode mx-auto">
           <div className="ds-event-wrapper v2 bg-grey p-relative">
 

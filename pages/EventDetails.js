@@ -1,13 +1,14 @@
 import useSWR from 'swr'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
-import { Pagination, Navigation, EffectCreative, FreeMode, Thumbs, Grid } from "swiper";
+import { Pagination, Navigation, EffectCreative } from "swiper";
 import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
 import "swiper/css/effect-creative";
 import Image from "next/image";
 import getSlug from "./components/slug";
+import Script from "next/script";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 const refreshInterval = 15*60*1000
@@ -51,6 +52,19 @@ export default function EventDetails() {
             <div key={index}>
               {data.details!==null?(
                 <SwiperSlide key={index}>
+                  <Script id="script-main" strategy="lazyOnload">
+                    {
+                      `
+                        setTimeout(function(){
+                        let headerHeightMain = document.querySelector('.ds-event-top-head').clientHeight;
+                        //document.querySelector('.ds-event-wrapper-body').style.paddingTop = headerHeightMain+"px";
+                        document.querySelector('.event-content').style.paddingTop = headerHeightMain+"px";
+                        document.querySelector('.event-image').style.paddingTop = headerHeightMain+"px";
+                        },200)
+          `
+                    }
+                  </Script>
+
                   <style jsx>{`
                 .bg-primary{
                   background-color: ${bgColor}
@@ -97,7 +111,7 @@ export default function EventDetails() {
                     ) : (
                       <div className="row event-row event-row-js">
                         {/*event content column*/}
-                        <div className="event-content-no-image">
+                        <div className="event-full-row event-content-no-image">
                           <div className="event-content bg-grey-greenish h-full d-flex">
                             <div>
                               <div className="ds-event-head pb-1 pt-1 w-100 m-0">
@@ -114,7 +128,42 @@ export default function EventDetails() {
                   </div>
                 </SwiperSlide>
               ):(
-                <></>
+                <SwiperSlide key={index}>
+                  <div className="ds-event-single mx-auto">
+                    <div className="row event-row event-row-js">
+                      {/*event content column*/}
+                      <div className="event-full-row">
+                        <style jsx>{`
+                .bg-primary{
+                  background-color: ${bgColor}
+                }
+                .text-primary{
+                  color: ${bgColor}
+                }
+            `}</style>
+                        <div className="event-image h-full bg-primary d-flex justify-center align-center">
+                          <div className="w-100">
+                            <div className="image-holder">
+                              <div className="image image-details">
+                                {data.image===null?(
+                                  <p></p>
+                                ):(
+                                  <Image src={data.image} alt="event" fill />
+                                )}
+                              </div>
+                            </div>
+
+                            <div className="ds-event-head text-center pb-2 pt-2">
+                              <h3 className="m-0 text-uppercase text-big text-bold text-white">{data.title}</h3>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </SwiperSlide>
+
               )}
             </div>
           ))}

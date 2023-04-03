@@ -420,7 +420,6 @@ text property
   line-height: 1.8;
 }
 .ds-event-bottom-foot {
-  background-color: #fff;
   padding: 0.6rem;
   position: absolute;
   background-color: transparent;
@@ -589,8 +588,7 @@ text property
   background: #fff;
 }
 .ds-event-single .event-row {
-  height: 100vh;
-  min-height: 56rem;
+  width: 100%;
 }
 .ds-event-single.v1 {
   background: #ffffff57;
@@ -623,6 +621,19 @@ text property
 .ds-sidebar-title {
   font-size: 1.5rem;
   text-transform: uppercase;
+}
+
+.event-full-row {
+  flex: 1;
+  width: 100%;
+}
+.event-full-row .image {
+  padding-top: 50%;
+}
+@media (min-width: 3600px) {
+  .event-full-row .image {
+    padding-top: 54%;
+  }
 }
 
 .section-title {
@@ -721,6 +732,7 @@ text property
 .event-image {
   padding: 2rem 2.8rem;
   box-sizing: border-box;
+  padding-top: 5.5rem;
 }
 .event-content {
   padding: 2rem 2.8rem;
@@ -767,6 +779,10 @@ text property
 
 .w-14 {
   width: 14%;
+}
+
+.event-content, .event-image {
+  height: 100vh;
 }
 
 .swiper-pagination {
