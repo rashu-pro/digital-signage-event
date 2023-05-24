@@ -15,7 +15,8 @@ const refreshInterval = 15*60*1000
 let bgColor = '#218649';
 
 export default function EventDetails() {
-  const { data, error } = useSWR('https://secure-api.net/api/v1/digital-signage-announcement?slug='+getSlug(), fetcher, { refreshInterval: refreshInterval })
+  // const { data, error } = useSWR('https://secure-api.net/api/v1/digital-signage-announcement?slug='+getSlug(), fetcher, { refreshInterval: refreshInterval })
+  const { data, error } = useSWR('https://secure-api.net/beta/api/v1/digital-signage-announcement?slug='+getSlug(), fetcher, { refreshInterval: refreshInterval })
   if(error) return <p className='text-center'> Failed to load... </p>
   if(!data) return <p className='text-center'>loading...</p>
   
