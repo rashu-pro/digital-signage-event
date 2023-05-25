@@ -14,9 +14,11 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json())
 const refreshInterval = 15*60*1000
 let bgColor = '#218649';
 
-export default function EventDetails() {
-  // const { data, error } = useSWR('https://secure-api.net/api/v1/digital-signage-announcement?slug='+getSlug(), fetcher, { refreshInterval: refreshInterval })
-  const { data, error } = useSWR('https://secure-api.net/beta/api/v1/digital-signage-announcement?slug='+getSlug(), fetcher, { refreshInterval: refreshInterval })
+export default function EventDetails(props) {
+  const endpoint ='/digital-signage-announcement';
+  const queryParameter = '?slug='+getSlug();
+
+  const { data, error } = useSWR(props.dataBaseUrl+endpoint+queryParameter, fetcher, { refreshInterval: refreshInterval })
   if(error) return <p className='text-center'> Failed to load... </p>
   if(!data) return <p className='text-center'>loading...</p>
   
@@ -83,11 +85,7 @@ export default function EventDetails() {
                             <div className="w-100">
                               <div className="image-holder">
                                 <div className="image image-details">
-                                  {data.image===null?(
-                                    <p></p>
-                                  ):(
-                                    <Image src={data.image} alt="event" fill />
-                                  )}
+                                  <Image src={data.image} alt="event" fill />
                                 </div>
                               </div>
 

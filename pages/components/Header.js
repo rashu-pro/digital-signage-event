@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Marquee from "react-fast-marquee";
 import MarqueeText from "./ticker";
 import Script from "next/script";
 
@@ -28,7 +27,9 @@ export default function Header(props){
             <Image src={props.logo} alt="ICS" fill />
           </div>
         </div>
-        <MarqueeText />
+
+        <MarqueeText dataBaseUrl={props.dataBaseUrl} />
+
         <div className="ds-organization-logo w-14">
           <div className="logo-holder w-100">
             <Image src="https://res.cloudinary.com/secure-api/image/upload/v1665995024/secure-api/Secure-api/content/images/bsyzbmzysh1fjgieix2v.png"

@@ -104,7 +104,10 @@ const sampleData = [
 ];
 
 export default function Sidebar(props){
-  const { data, error } = useSWR('https://secure-api.net/api/v1/digital-signage-weekly-events?slug='+getSlug(), fetcher)
+  const endpoint ='/digital-signage-weekly-events';
+  const queryParameter = '?slug='+getSlug();
+
+  const { data, error } = useSWR(props.dataBaseUrl+endpoint+queryParameter, fetcher)
   if(error) return <p className='m-0 text-center'> Failed to load... </p>
   if(!data) return <p className='m-0 text-center'>loading...</p>
   return (

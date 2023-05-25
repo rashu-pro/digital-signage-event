@@ -3,8 +3,11 @@ import getSlug from "./slug";
 import Marquee from "react-fast-marquee";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
-export default function MarqueeText(){
-  const { data, error } = useSWR('https://secure-api.net/api/v1/digital-signage-tickers/?slug='+getSlug(), fetcher)
+export default function MarqueeText(props){
+  const endpoint ='/digital-signage-tickers';
+  const queryParameter = '?slug='+getSlug();
+
+  const { data, error } = useSWR(props.dataBaseUrl+endpoint+queryParameter, fetcher)
   if(error) return <p className='m-0 text-center'> Failed to load... </p>
   if(!data) return <p className='m-0 text-center'>loading...</p>
 
