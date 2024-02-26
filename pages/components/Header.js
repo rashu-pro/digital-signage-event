@@ -24,7 +24,7 @@ export default function Header(props){
       `}</style>
         <div className="ds-organization-logo pr-5">
           <div className="logo-holder">
-            <Image src={props.logo} alt="ICS" fill />
+            {props.logo && <Image src={props.logo} alt="ICS" fill />}
           </div>
         </div>
 
